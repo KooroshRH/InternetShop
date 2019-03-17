@@ -46,6 +46,6 @@ public class Order {
     }
 
     public void addDiscount(Discount discount){
-
+        price = price - (price*(discount.getPercentage()/100));
     }
 }
