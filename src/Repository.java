@@ -34,9 +34,11 @@ public class Repository {
         } else {
             goods.put(g, amount);
         }
+        freeCapacity -= amount;
     }
 
     public void removeGood(Good g, int amount){
         goods.replace(g, goods.get(g)-amount);
+        freeCapacity += amount;
     }
 }
