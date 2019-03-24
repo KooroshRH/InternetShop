@@ -51,11 +51,8 @@ public class Shop {
         return goods;
     }
 
-    public void addDiscount(Discount d, Customer c){
-        ArrayList<Order> readyDiscount = c.getSubmittedOrders();
-        for (Order order : readyDiscount){
-            order.addDiscount(d);
-        }
+    public void addDiscount(Discount d, Order o){
+        o.addDiscount(d);
     }
 
     public HashMap<Good, Integer> getItemSold(){
