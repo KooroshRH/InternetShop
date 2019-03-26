@@ -12,6 +12,7 @@ public class Main {
                 String newCommand = input.nextLine();
                 if (newCommand.equals("customer")){
                     int id = input.nextInt();
+                    input.nextLine();
                     String name = input.nextLine();
                     shop.addCustomer(new Customer(name, id));
                 } else if (newCommand.equals("good")){
@@ -45,7 +46,7 @@ public class Main {
                     ArrayList<Customer> customers = shop.getCustomers();
                     for (Customer customer : customers){
                         if (customer.getId() == customerId){
-                            customer.setBalance(balance);
+                            customer.setBalance(customer.getBalance()+balance);
                             break;
                         }
                     }
