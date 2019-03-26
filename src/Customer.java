@@ -11,6 +11,9 @@ public class Customer {
     public Customer(String name, int id) {
         this.name = name;
         this.id = id;
+        orders = new ArrayList<>();
+        pendingOrders = new ArrayList<>();
+        submittedOrders = new ArrayList<>();
     }
 
     public String getName() {

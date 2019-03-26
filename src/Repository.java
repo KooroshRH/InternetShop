@@ -10,6 +10,7 @@ public class Repository {
         this.id = id;
         this.capacity = capacity;
         freeCapacity = capacity;
+        goods = new HashMap<>();
     }
 
     public int getId() {

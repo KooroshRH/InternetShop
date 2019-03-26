@@ -8,15 +8,11 @@ public class Main {
         ArrayList<Order> orders = new ArrayList<>();
         while(true){
             String command = input.nextLine();
-            //input.nextLine();
             if (command.equals("add")){
-                System.out.println(1);
                 String newCommand = input.nextLine();
-                //input.nextLine();
                 if (newCommand.equals("customer")){
                     int id = input.nextInt();
                     String name = input.nextLine();
-                    input.nextLine();
                     shop.addCustomer(new Customer(name, id));
                 } else if (newCommand.equals("good")){
                     int id = input.nextInt();
@@ -28,11 +24,10 @@ public class Main {
                     shop.addGood(good);
                     shop.increamentGood(good, amount);
                 } else if (newCommand.equals("repository")){
-                    System.out.println(2);
                     int id = input.nextInt();
                     int capacity = input.nextInt();
-                    shop.addRepository(new Repository(id, capacity));
-                    System.out.println(3);
+                    Repository r = new Repository(id, capacity);
+                    shop.addRepository(r);
                 } else if (newCommand.equals("order")){
                     int orderId = input.nextInt();
                     int customerId = input.nextInt();
@@ -80,16 +75,13 @@ public class Main {
                     shop.addDiscount(new Discount(id, percent));
                 }
             } else if (command.equals("report")){
-                System.out.println(4);
                 String newCommand = input.nextLine();
-                //input.nextLine();
                 if (newCommand.equals("customers")){
                     ArrayList<Customer> customers = shop.getCustomers();
                     for (Customer customer : customers){
                         System.out.println(customer.getId() + ", " + customer.getName() + ", " + customer.getBalance() + ", " + customer.getTotalOrders().size() + ", " + customer.getSubmittedOrders().size());
                     }
                 } else if (newCommand.equals("repositories")){
-                    System.out.println(5);
                     ArrayList<Repository> repositories = shop.getRepositories();
                     for (Repository repository : repositories){
                         System.out.println(repository.getId() + ", " + repository.getCapacity() + ", " + repository.getFreeCapacity());
@@ -107,7 +99,6 @@ public class Main {
                 }
             } else if (command.equals("remove")){
                 String newCommand = input.nextLine();
-                input.nextLine();
                 if (newCommand.equals("item")){
                     int orderId = input.nextInt();
                     int goodId = input.nextInt();
@@ -126,7 +117,6 @@ public class Main {
                 }
             } else if (command.equals("submit")){
                 String newCommand = input.nextLine();
-                input.nextLine();
                 if (newCommand.equals("order")){
                     int id = input.nextInt();
 

@@ -12,6 +12,12 @@ public class Shop {
 
     public Shop(String name){
         this.name = name;
+        income = 0;
+        mapGoods = new HashMap<>();
+        customers = new ArrayList<>();
+        repositories = new ArrayList<>();
+        goods = new ArrayList<>();
+        discounts = new ArrayList<>();
     }
 
     public void addCustomer(Customer c){
@@ -45,6 +51,11 @@ public class Shop {
 
     public void increamentGood(Good g, int amount){
         mapGoods.replace(g, mapGoods.get(g)+amount);
+        for (Repository x : repositories){
+            if (x.getFreeCapacity() > amount){
+                x.addGood(g, amount);
+            }
+    }
     }
 
     public ArrayList<Good> getGoods(){
