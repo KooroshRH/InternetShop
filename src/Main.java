@@ -35,8 +35,9 @@ public class Main {
                     ArrayList<Customer> customers = shop.getCustomers();
                     for (Customer customer : customers){
                         if (customer.getId() == customerId){
-                            orders.add(new Order(orderId, customer));
-                            customer.addOrder(new Order(orderId, customer));
+                            Order newOrder = new Order(orderId, customer);
+                            orders.add(newOrder);
+                            customer.addOrder(newOrder);
                             break;
                         }
                     }
@@ -120,7 +121,20 @@ public class Main {
                 String newCommand = input.nextLine();
                 if (newCommand.equals("order")){
                     int id = input.nextInt();
-
+                    ArrayList<Customer> customers = shop.getCustomers();
+                    for (Customer customer : customers){
+                        ArrayList<Order> orders1 = customer.getPendingOrders();
+                        for (Order order : orders1){
+                            if (order.getId() == id) {
+                                order.calculatePrice();
+                                if (customer.getBalance() >= order.getPrice()) {
+                                    customer.submitOrder(order);
+                                    customer.setBalance(customer.getBalance()-order.getPrice());
+                                    shop.setIncome(shop.getIncome()+order.getPrice());
+                                }
+                            }
+                        }
+                    }
                 }
             } else if (command.equals("terminate")){
                 break;

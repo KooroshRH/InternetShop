@@ -12,6 +12,11 @@ public class Order {
         this.c = c;
         price = 0;
         status = "pending";
+        goods = new HashMap<>();
+    }
+
+    public int getPrice() {
+        return price;
     }
 
     public int getId() {
