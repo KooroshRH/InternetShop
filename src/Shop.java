@@ -54,8 +54,9 @@ public class Shop {
         for (Repository x : repositories){
             if (x.getFreeCapacity() > amount){
                 x.addGood(g, amount);
+                break;
             }
-    }
+        }
     }
 
     public ArrayList<Good> getGoods(){

@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.Iterator;
 
 public class Order {
     private int id;
@@ -13,6 +14,14 @@ public class Order {
         price = 0;
         status = "pending";
         goods = new HashMap<>();
+    }
+
+    public int getAmount() {
+        int amount = 0;
+        for (Integer key : goods.values()){
+            amount += key;
+        }
+        return amount;
     }
 
     public int getPrice() {
@@ -44,8 +53,8 @@ public class Order {
     }
 
     public int calculatePrice(){
-        for (Integer key : goods.values()){
-            price += key;
+        for (Good key : goods.keySet()){
+            price += key.getPrice() * goods.get(key);
         }
         return price;
     }

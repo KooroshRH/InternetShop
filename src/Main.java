@@ -89,15 +89,7 @@ public class Main {
                         System.out.println(repository.getId() + ", " + repository.getCapacity() + ", " + repository.getFreeCapacity());
                     }
                 } else if (newCommand.equals("income")){
-                    ArrayList<Customer> customers = shop.getCustomers();
-                    int income = 0;
-                    for (Customer customer : customers){
-                        ArrayList<Order> submittedOrders = customer.getSubmittedOrders();
-                        for (Order order : submittedOrders){
-                            income += order.calculatePrice();
-                        }
-                    }
-                    System.out.println(income);
+                    System.out.println(shop.getIncome());
                 }
             } else if (command.equals("remove")){
                 String newCommand = input.nextLine();
@@ -124,14 +116,16 @@ public class Main {
                     ArrayList<Customer> customers = shop.getCustomers();
                     for (Customer customer : customers){
                         ArrayList<Order> orders1 = customer.getPendingOrders();
-                        for (Order order : orders1){
+                        for (Order order : orders1) {
                             if (order.getId() == id) {
                                 order.calculatePrice();
                                 if (customer.getBalance() >= order.getPrice()) {
                                     customer.submitOrder(order);
                                     customer.setBalance(customer.getBalance()-order.getPrice());
                                     shop.setIncome(shop.getIncome()+order.getPrice());
+                                    
                                 }
+                                break;
                             }
                         }
                     }
