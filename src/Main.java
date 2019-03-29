@@ -62,6 +62,7 @@ public class Main {
                             for (Good good : goods){
                                 if (good.getId() == goodId){
                                     order.addItem(good, amount);
+                                    //order.calculatePrice();
                                     key = 1;
                                     break;
                                 }
@@ -117,15 +118,27 @@ public class Main {
                     for (Customer customer : customers){
                         ArrayList<Order> orders1 = customer.getPendingOrders();
                         for (Order order : orders1) {
+                            order.calculatePrice();
                             if (order.getId() == id) {
-                                order.calculatePrice();
                                 if (customer.getBalance() >= order.getPrice()) {
                                     customer.submitOrder(order);
-                                    customer.setBalance(customer.getBalance()-order.getPrice());
-                                    shop.setIncome(shop.getIncome()+order.getPrice());
-                                    
+                                    customer.setBalance(customer.getBalance()-(int)order.getPrice());
+                                    shop.setIncome(shop.getIncome()+(int)order.getPrice());
                                 }
                                 break;
+                            }
+                        }
+                    }
+                } else if (newCommand.equals("discount")){
+                    int orderId = input.nextInt();
+                    int discountId = input.nextInt();
+                    for (Order order : orders){
+                        if (order.getId() == orderId){
+                            ArrayList<Discount> discounts = shop.getDiscounts();
+                            for (Discount discount : discounts){
+                                if (discount.getId() == discountId){
+                                    shop.addDiscount(discount, order);
+                                }
                             }
                         }
                     }

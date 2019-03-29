@@ -5,10 +5,12 @@ public class Order {
     private int id;
     private Customer c;
     private String status;
-    private int price;
+    private double price;
+    private Discount discount;
     private HashMap<Good, Integer> goods;
 
     public Order(int id, Customer c){
+        discount = null;
         this.id = id;
         this.c = c;
         price = 0;
@@ -24,7 +26,7 @@ public class Order {
         return amount;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
@@ -52,14 +54,17 @@ public class Order {
         return goods;
     }
 
-    public int calculatePrice(){
+    public double calculatePrice(){
         for (Good key : goods.keySet()){
             price += key.getPrice() * goods.get(key);
+        }
+        if (discount != null){
+            price = price - (price * ((double) discount.getPercentage()/100));
         }
         return price;
     }
 
     public void addDiscount(Discount discount){
-        price = price - (price*(discount.getPercentage()/100));
+        this.discount = discount;
     }
 }

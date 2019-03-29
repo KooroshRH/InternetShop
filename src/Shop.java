@@ -74,4 +74,8 @@ public class Shop {
     public void addDiscount(Discount discount){
         discounts.add(discount);
     }
+
+    public ArrayList<Discount> getDiscounts(){
+        return discounts;
+    }
 }

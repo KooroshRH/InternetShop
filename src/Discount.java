@@ -8,6 +8,10 @@ public class Discount {
         this.percent = percent;
     }
 
+    public int getId(){
+        return id;
+    }
+
     public void setOrder(Order order){
         this.order = order;
     }
