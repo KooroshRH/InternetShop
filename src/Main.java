@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Main {
     public static void main(String[] args){
@@ -124,6 +126,18 @@ public class Main {
                                     customer.submitOrder(order);
                                     customer.setBalance(customer.getBalance()-(int)order.getPrice());
                                     shop.setIncome(shop.getIncome()+(int)order.getPrice());
+                                    ArrayList<Repository> repositories = shop.getRepositories();
+                                    HashMap<Good, Integer> goods = order.getItems();
+                                    for (Good good : goods.keySet()){
+                                        for (Repository repository : repositories){
+                                            Set<Good> repoGood = repository.getGoods().keySet();
+                                            if (repoGood.contains(good)){
+                                                HashMap<Good, Integer> goods1 = repository.getGoods();
+                                                repository.removeGood(good, order.getItems().get(good));
+                                                break;
+                                            }
+                                        }
+                                    }
                                 }
                                 break;
                             }
