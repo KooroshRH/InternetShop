@@ -55,6 +55,7 @@ public class Order {
     }
 
     public double calculatePrice(){
+        price = 0;
         for (Good key : goods.keySet()){
             price += key.getPrice() * goods.get(key);
         }
